@@ -34,7 +34,7 @@ function getSVG(pathList, size, opt_type) {
     return p;
   }
 
-  var w = 846, h = 352,
+  var w = this.bitmap.width, h = this.bitmap.height,
     len = pathList.length, c, i, strokec, fillc, fillrule;
 
   var svg = '<svg id="svg" version="1.1" width="' + w + '" height="' + h +
