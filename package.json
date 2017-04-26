@@ -1,21 +1,11 @@
 {
-  "name": "potrace-js",
+  "name": "js-potrace",
   "version": "0.0.5",
   "description": "Traces bitmap images to vector paths",
   "main": "lib/index.js",
   "files": [
     "lib"
   ],
-  "jspm": {
-    "name": "potrace",
-    "main": "index.js",
-    "directories": {
-      "lib": "src"
-    },
-    "devDependencies": {
-      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.21"
-    }
-  },
   "scripts": {
     "prepublish": "npm run build",
     "build": "babel src --out-dir lib",
@@ -32,14 +22,14 @@
   "format": "esm",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/casperlamboo/potrace.git"
+    "url": "git+https://github.com/weberliu/potrace.git"
   },
-  "author": "Casper Lamboo",
+  "author": "Weber Liu",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/casperlamboo/potrace/issues"
+    "url": "https://github.com/weberliu/potrace/issues"
   },
-  "homepage": "https://github.com/casperlamboo/potrace#readme",
+  "homepage": "https://github.com/weberliu/potrace#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.23.1",

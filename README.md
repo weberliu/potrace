@@ -1,36 +1,22 @@
 # POTRACE
-Based on http://potrace.sourceforge.net and https://github.com/kilobtye/potrace.
+Based on http://potrace.sourceforge.net and https://github.com/kilobtye/potrace and https://github.com/casperlamboo/potrace.
 
 Converts bitmap images to vector paths.
 
 # Usage
-
-### Using JSPM (ECMAScript / ES6 Module)
-
-Install the library.
-
-```
-jspm install POTRACE=github:casperlamboo/POTRACE
-```
-
-Include the library.
-
-```javascript
-import POTRACE from 'POTRACE';
-```
 
 ### Using NPM (CommonJS module)
 
 Install the library.
 
 ```
-npm install potrace-js
+npm install js-potrace
 ```
 
 Include the library.
 
 ```javascript
-var POTRACE = require('potrace-js');
+import { Potrace, traceUrl, traceImage, traceCanvas } from 'js-potrace'
 ```
 
 # API
@@ -43,68 +29,82 @@ var POTRACE = require('potrace-js');
   turdsize: Float,
   optcurve: Bool,
   alphamax: Float,
-  opttolerance: Float
+  opttolerance: Float,
+  color: String
 }
 ```
-  - turnpolicy: how to resolve ambiguities in path decomposition. (default: "minority")       
+  - turnpolicy: how to resolve ambiguities in path decomposition. (default: "minority")
   - turdsize: suppress speckles of up to this size (default: 2)
   - optcurve: turn on/off curve optimization (default: true)
   - alphamax: corner threshold parameter (default: 1)
   - opttolerance: curve optimization tolerance (default: 0.2)
+  - color: The stroke or fill color (default: 'black')
 
-**POTRACE.traceUrl**
+## Functions
+
+**traceUrl**
 
 Traces a given image from url.
 
 ```javascript
-[...Path] = async POTRACE.traceUrl(url: String, [ options: Object ])
+traceUrl(url: String, [ options: Object ])
+  .then(trace => {
+    trace.getSVG(1)
+  })
 ```
   - url: path to the image
   - options: trace options
 
-**POTRACE.traceImage**
+*.traceImage**
 
 Traces a given image.
 
 ```javascript
-[...Path] = POTRACE.traceImage(image: HTMLImageElement, [ options: Object ])
+var trace = traceImage(image: HTMLImageElement, [ options: Object ])
+trace.getSVG('1')
 ```
   - image: image containing the image
   - options: trace options
 
-**POTRACE.traceCanvas**
+**traceCanvas**
 
 Traces a given canvas.
 
 ```javascript
-[...Path] = POTRACE.traceCanvas(canvas: HTMLCanvasElement, [ options: Object ])
+var trace = traceCanvas(canvas: HTMLCanvasElement, [ options: Object ])
+trace.getSVG()
 ```
   - canvas: canvas containing the image
   - options: trace options
 
-**POTRACE.bitmap**
+## Portrace
 
 Traces a given bitmap.
 
   ```javascript
-  [...Path] = POTRACE.traceBitmap(bitmap: POTRACE.Bitmap, [ options: Object ])
+  import {Potrace} from 'js-potrace'
+
+  var trace = new Potrace(bitmap, [ options: Object ])
   ```
     - bitmap: bitmap containing image info (1 and 0 values)
     - options: trace options
 
+### Methods
 
-**POTRACE.getSVG**
+**getSVG**
 
 Converts trace result to svg.
 
 ```javascript
-svg: String = POTRACE.getSVG([...Path])
+var trace = new Potrace(bitmap, [ options: Object ])
+svg： String = trace.getSVG([size, curve])
 ```
 
-**POTRACE.getPaths**
+**getPaths**
 
 Converts trace result to readable paths.
 
 ```javascript
-svg: String = POTRACE.getPaths([...Path])
+var trace = new Potrace(bitmap, [ options: Object ])
+svg: String = trace.getPaths()
 ```
