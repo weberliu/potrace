@@ -24,8 +24,7 @@ export function createBitmap (canvas) {
     const a = imageData.data[imageDataIndex++] // alpha
     const color = r + g + b
 
-    bitmap.data[bitmapIndex] = (color < 128 && a > 0.3 ? 1 : 0)
-    bitmap.data[bitmapIndex] = (color < 128 && a > 0.3 ? 1 : 0)
+    bitmap.data[bitmapIndex] = (color < 128 && a > 0 ? 1 : 0)
   }
 
   return bitmap

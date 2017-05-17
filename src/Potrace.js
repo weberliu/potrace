@@ -93,7 +93,7 @@ export default class Potrace {
     return paths
   }
 
-  getSVG (size, optType) {
+  getSVG (size = 1, optType) {
     function path (curve) {
       function bezier (i) {
         var b = 'C ' + (curve.c[i * 3 + 0].x * size).toFixed(3) + ' ' +
